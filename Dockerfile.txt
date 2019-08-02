@@ -1,0 +1,18 @@
+FROM ubuntu:16.04
+
+MAINTAINER gsx
+
+RUN mkdir /code \
+  &&apt-get update -y && \  
+    apt-get install -y python3-pip python3-dev
+
+WORKDIR /code
+
+COPY test.py /code 
+COPY requirments.txt /code
+
+RUN pip3 install -r /code/requirments.txt
+
+ENTRYPOINT [ "python3" ]
+
+CMD ["/code/test.py"]
